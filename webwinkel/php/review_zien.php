@@ -40,6 +40,6 @@ $conn->close();
 <?php
 
 if (isset($_SESSION['gebruiker_id'])) {
-    echo '<a href="account.php">terug naar account</a>';
+    echo '<a href="bestellen.php">terug naar home?</a>';
 }
 ?>

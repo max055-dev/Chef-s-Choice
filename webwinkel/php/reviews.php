@@ -3,7 +3,7 @@ include 'db_connect.php'; //verbind met database.
 
 if (!isset($_SESSION['gebruiker_id'])) //als de gebruiker geen "id" heeft, word hij naar inlog.php gestuurd.
 {
-    header("Location: login.php");
+    header("Location: inlog.php");
     exit();
 }
 
