@@ -1,5 +1,4 @@
-<?php 
-session_start(); //start de sessie.
+<?php
 include 'db_connect.php'; //verbind met database.
 
 if (!isset($_SESSION['gebruiker_id'])) //als de gebruiker geen "id" heeft, word hij naar inlog.php gestuurd.
@@ -19,19 +18,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['review'])) //haalt re
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "si", $review, $gebruiker_id);
 
-    if (mysqli_stmt_execute($stmt)) 
-    {
+    if (mysqli_stmt_execute($stmt)) {
         header("Location: aparte_reviews.php");
         exit();
-    } else 
-    {
+    } else {
         echo "Er is een fout opgetreden bij het bijwerken van je gegevens.";
     }
 
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
-} else 
-{
+} else {
     echo "Geen geldige review ontvangen.";
 }
-?>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'db_connect.php';
-print_r($_SESSION);
+include 'account.php';
 if (!isset($_SESSION['gebruiker_id'])) {
     die("Je moet ingelogd zijn om een bestelling te plaatsen.");
 }
@@ -60,6 +60,7 @@ $result = $conn->query($sql);
 </html>
 
 <?php
-
+include 'review_zien.php';
+include 'reviews.php';
 $conn->close();
 ?>
