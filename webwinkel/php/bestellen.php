@@ -9,6 +9,44 @@ if (!isset($_SESSION['gebruiker_id'])) {
 
 $sql = "SELECT * FROM producten";
 $result = $conn->query($sql);
+
+// Bereken totaalprijs van eerdere bestellingen (indien gewenst)
+$sqlBestellingen = "
+    SELECT p.prijs, b.aantal
+    FROM bestellingen b
+    JOIN producten p ON b.product_id = p.product_id
+    WHERE b.gebruiker_id = ?
+";
+
+$stmt = $conn->prepare($sqlBestellingen);
+$stmt->bind_param("i", $gebruiker_id);
+$stmt->execute();
+$result_bestellingen = $stmt->get_result();
+
+$totaal = 0;
+while ($row = $result_bestellingen->fetch_assoc()) {
+    $totaal += $row['prijs'] * $row['aantal'];
+}
+
+// Kortingscode verwerken
+$kortingscode = isset($_POST['kortingscode']) ? strtoupper(trim($_POST['kortingscode'])) : '';
+
+function berekenKorting($bedrag, $code) {
+    $kortingen = [
+        "KORTING10" => 10,
+        "KORTING15" => 15,
+        "KORTING20" => 20
+    ];
+
+    if (isset($kortingen[$code])) {
+        $percentage = $kortingen[$code];
+        return $bedrag - ($bedrag * ($percentage / 100));
+    }
+
+    return $bedrag;
+}
+
+$totaal_met_korting = berekenKorting($totaal, $kortingscode);
 ?>
 
 <!DOCTYPE html>
@@ -50,6 +88,25 @@ $result = $conn->query($sql);
             <div class="text-center mt-4">
                 <button type="submit" class="btn btn-primary">Bestellen</button>
             </div>
+
+
+
+            <!-- Kortingscode invoeren -->
+        <div class="form-group mt-3">
+            <label for="kortingscode">Kortingscode:</label>
+            <input type="text" name="kortingscode" id="kortingscode" class="form-control" value="<?php echo htmlspecialchars($kortingscode); ?>">
+        </div>
+
+        <!-- Toon totaalbedrag -->
+        <div class="mt-3">
+            <p><strong>Totaal vóór korting:</strong> €<?php echo number_format($totaal, 2); ?></p>
+            <?php if ($totaal != $totaal_met_korting): ?>
+                <p><strong>Korting toegepast (<?php echo htmlspecialchars($kortingscode); ?>):</strong> €<?php echo number_format($totaal - $totaal_met_korting, 2); ?></p>
+            <?php endif; ?>
+            <p><strong>Totaal na korting:</strong> €<?php echo number_format($totaal_met_korting, 2); ?></p>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Bestellen</button>
         </form>
     </div>
 
