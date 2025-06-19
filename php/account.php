@@ -30,6 +30,7 @@ $result_bestellingen = $stmt2->get_result();
 ?>
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <title>Mijn Account & Bestellingen</title>
@@ -42,12 +43,14 @@ $result_bestellingen = $stmt2->get_result();
             --crème: #FAF3E0;
             --diep-roodbruin: #7B3F00;
         }
+
         body {
             margin: 0;
             font-family: 'Lora', serif;
             background-color: var(--crème);
             color: var(--donkerbruin);
         }
+
         .navbar {
             background-color: var(--donkerbruin);
             overflow: hidden;
@@ -56,10 +59,12 @@ $result_bestellingen = $stmt2->get_result();
             display: flex;
             align-items: center;
         }
+
         .navbar .logo img {
             height: 60px;
             margin: 20px 30px;
         }
+
         .navbar a {
             display: block;
             color: var(--champagne-goud);
@@ -69,10 +74,12 @@ $result_bestellingen = $stmt2->get_result();
             text-decoration: none;
             transition: background-color 0.3s, color 0.3s;
         }
+
         .navbar a:hover {
             background-color: var(--champagne-goud);
             color: var(--donkerbruin);
         }
+
         .content {
             padding: 40px 20px;
             max-width: 900px;
@@ -80,14 +87,17 @@ $result_bestellingen = $stmt2->get_result();
             line-height: 1.8;
             font-size: 18px;
         }
+
         .content a {
             color: var(--champagne-goud);
             text-decoration: underline;
             transition: color 0.3s;
         }
+
         .content a:hover {
             color: var(--diep-roodbruin);
         }
+
         .btn-gold {
             background-color: var(--champagne-goud);
             color: var(--donkerbruin);
@@ -102,10 +112,12 @@ $result_bestellingen = $stmt2->get_result();
             display: inline-block;
             margin-top: 20px;
         }
+
         .btn-gold:hover {
             background-color: #b89130;
             color: var(--donkerbruin);
         }
+
         footer {
             background-color: var(--donkerbruin);
             color: var(--champagne-goud);
@@ -114,43 +126,55 @@ $result_bestellingen = $stmt2->get_result();
             border-top: 1px solid var(--champagne-goud);
             margin-top: 50px;
         }
+
         footer a {
             color: var(--champagne-goud);
             margin: 0 10px;
             text-decoration: none;
             font-weight: bold;
         }
+
         footer a:hover {
             text-decoration: underline;
             color: var(--diep-roodbruin);
         }
-        h1, h2, h3 {
+
+        h1,
+        h2,
+        h3 {
             font-family: 'Playfair Display', serif;
             color: var(--donkerbruin);
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
-        th, td {
+
+        th,
+        td {
             padding: 12px;
             border-bottom: 1px solid var(--diep-roodbruin);
             text-align: left;
         }
+
         th {
             background-color: var(--champagne-goud);
             color: var(--donkerbruin);
         }
+
         @media (max-width: 600px) {
             .navbar a {
                 padding: 12px;
                 font-size: 14px;
             }
+
             .content {
                 padding: 20px 10px;
                 font-size: 16px;
             }
+
             .btn-gold {
                 padding: 10px 18px;
                 font-size: 14px;
@@ -158,10 +182,11 @@ $result_bestellingen = $stmt2->get_result();
         }
     </style>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="logo">
-            <a href="index.php"><img src="logo.jpg"></a>
+            <a href="index.php"><img src="../img/logo.png"></a>
         </div>
         <a href="Homepagina.php">Home</a>
         <a href="account.php">Mijn account</a>
@@ -205,4 +230,5 @@ $result_bestellingen = $stmt2->get_result();
         &copy; <?= date('Y') ?> Jouw Bedrijf | <a href="privacy.php">Privacy</a> | <a href="contact.php">Contact</a>
     </footer>
 </body>
+
 </html>

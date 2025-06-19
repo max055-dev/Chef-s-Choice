@@ -1,13 +1,13 @@
 <?php
-  // Start de sessie
+// Start de sessie
+session_start();
 
 // Vernietig alle sessievariabelen
-session_unset();  
+session_unset();
 
 // Vernietig de sessie
-session_destroy();  
+session_destroy();
 
 // Redirect de gebruiker naar de homepagina
 header("Location: Homepagina.php?logout=success");
 exit();
-?>
