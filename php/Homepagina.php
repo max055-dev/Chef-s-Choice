@@ -24,7 +24,8 @@ include 'db_connect.php';
         body {
             margin: 0;
             font-family: 'Lora', serif;
-            background-color: var(--crème);
+            background: url(../img/keuken.jpg);
+            background-size: cover;
             color: var(--donkerbruin);
         }
 
@@ -60,11 +61,14 @@ include 'db_connect.php';
 
         /* Content */
         .content {
-            padding: 40px 20px;
+            padding: 20px;
             max-width: 900px;
             margin: 0 auto;
+            margin-top: 30px;
             line-height: 1.8;
             font-size: 18px;
+            background-color: rgba(62, 39, 35, 0.7);
+            color: #D4AF37;
         }
 
         .content a {
@@ -103,9 +107,13 @@ include 'db_connect.php';
             background-color: var(--donkerbruin);
             color: var(--champagne-goud);
             text-align: center;
-            padding: 20px 10px;
+            padding: 60px 10px;
             border-top: 1px solid var(--champagne-goud);
             margin-top: 50px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
         }
 
         footer a {
@@ -125,7 +133,7 @@ include 'db_connect.php';
         h2,
         h3 {
             font-family: 'Playfair Display', serif;
-            color: var(--donkerbruin);
+            color: var(--champagne-goud);
         }
 
         /* Responsief */
@@ -170,20 +178,20 @@ include 'db_connect.php';
         ?>
     </div>
 
-    <!-- Logout melding -->
-    <div class="content">
-        <?php
-        if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
-            echo "<p>✅ Succesvol uitgelogd! Bedankt voor het bezoeken van <strong>Chef's Choice</strong>!</p>";
-            echo "<p>Volg ons op:</p>";
-            echo "<ul>
-                <li>Instagram: <a href='https://instagram.com/ChefchoicseAwards' target='_blank'>@ChefchoicseAwards</a></li>
-                <li>TikTok: <a href='https://tiktok.com/@ChefChoices' target='_blank'>#ChefChoices</a></li>
-                <li>Email: <a href='mailto:ChefChoice@gmail.com'>ChefChoice@gmail.com</a></li>
-              </ul>";
-        }
-        ?>
-    </div>
+    <?php
+    if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
+        echo '<div class="content">';
+        echo '<p>✅ Succesvol uitgelogd! Bedankt voor het bezoeken van <strong>Chef\'s Choice</strong>!</p>';
+        echo '<p>Volg ons op:</p>';
+        echo '<ul>
+            <li>Instagram: <a href="https://instagram.com/ChefchoicseAwards" target="_blank">@ChefchoicseAwards</a></li>
+            <li>TikTok: <a href="https://tiktok.com/@ChefChoices" target="_blank">#ChefChoices</a></li>
+            <li>Email: <a href="mailto:ChefChoice@gmail.com">ChefChoice@gmail.com</a></li>
+          </ul>';
+        echo '</div>';
+    }
+    ?>
+
 
     <!-- Welkomsttekst en knop -->
     <div class="content">
