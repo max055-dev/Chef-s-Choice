@@ -192,6 +192,14 @@ include 'db_connect.php';
     }
     ?>
 
+    <?php
+    if (isset($_GET['registratie']) && $_GET['registratie'] === 'success') {
+        echo '<div class="content">';
+        echo '<p>✅ Succesvol geregistreerd! Bedankt voor het gebruiken van <strong>Chef\'s Choice</strong>!</p>';
+        echo '</div>';
+    }
+    ?>
+
 
     <!-- Welkomsttekst en knop -->
     <div class="content">
